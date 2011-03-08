@@ -6,10 +6,15 @@
         - @<%= singular_table_name %>.errors.full_messages.each do |msg|
           %li= msg
 
-<% for attribute in attributes -%>
-  .field
-    = f.label :<%= attribute.name %>
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
-<% end -%>
-  .actions
-    = f.submit 'Save'
+  %ul
+  <% for attribute in attributes -%>
+    %li.field
+      = f.label :<%= attribute.name %>
+      <% if attribute.reference? -%>
+      = f.select :<%= attribute.name %>, <%= orm_class.all(attribute.reference) %>.map{|c| [c.name, c.id] }
+      <% else %>
+      = f.<%= attribute.field_type %> :<%= attribute.name %>
+      <% end -%>
+  <% end -%>
+    %li.actions
+      = f.submit

@@ -1,9 +1,28 @@
+require 'rails/generators/generated_attribute'
+
+module Rails
+  module Generators
+    class GeneratedAttribute
+      def reference?
+        [ :references, :belongs_to ].include?(self.type)
+      end
+
+      def reference
+        self.human_name.to_sym
+      end
+    end
+  end
+end
+
 require 'rails/generators/erb/scaffold/scaffold_generator'
 
 module Haml
   module Generators
     class ScaffoldGenerator < Erb::Generators::ScaffoldGenerator
       source_root File.expand_path("../templates", __FILE__)
+
+      class_option :orm, :banner => "NAME", :type => :string, :required => true,
+                         :desc => "ORM to generate the view for"
 
       def copy_view_files
         available_views.each do |view|
