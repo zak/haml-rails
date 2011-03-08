@@ -1,9 +1,9 @@
 #<%= plural_table_name %>
   %h1 Listing <%= plural_table_name %>
-  <%= "- if can? :create, #{plural_table_name}\n  " if defined? CanCan -%>
+  <%= "- if can? :create, #{human_name}\n  " if defined? CanCan -%>
   = link_to t('link.new', :name => '<%= human_name %>'), new_<%= singular_table_name %>_path
 
-<% if !options[:table] %>
+<% if !options[:table] -%>
   - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
     .<%= singular_table_name %>
 <% for attribute in attributes -%>
@@ -20,7 +20,7 @@
         = <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 <% end -%>
-<% else %>
+<% else -%>
 %table
   %tr
 <% for attribute in attributes -%>
@@ -42,4 +42,4 @@
       %td= <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 <% end -%>
-<% end %>
+<% end -%>
