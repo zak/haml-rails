@@ -7,14 +7,14 @@
           %li= msg
 
   %ul
-  <% for attribute in attributes -%>
+<% for attribute in attributes -%>
     %li.field
       = f.label :<%= attribute.name %>
-      <% if attribute.reference? -%>
+<% if attribute.reference? -%>
       = f.select :<%= attribute.name %>, <%= orm_class.all(attribute.reference) %>.map{|c| [c.name, c.id] }
-      <% else %>
+<% else -%>
       = f.<%= attribute.field_type %> :<%= attribute.name %>
-      <% end -%>
-  <% end -%>
+<% end -%>
+<% end -%>
     %li.actions
       = f.submit
