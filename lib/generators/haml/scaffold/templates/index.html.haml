@@ -1,26 +1,25 @@
 #<%= plural_table_name %>
   %h1 Listing <%= plural_table_name %>
-  <%= "- if can? :create, #{plural_table_name}\n  " if defined? CanCan %>
+  <%= "- if can? :create, #{plural_table_name}\n  " if defined? CanCan -%>
   = link_to t('link.new', :name => '<%= human_name %>'), new_<%= singular_table_name %>_path
 
 <% if !options[:table] %>
   - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
     .<%= singular_table_name %>
-  <% for attribute in attributes -%>
-    <% if attributes.first == attribute -%>
+<% for attribute in attributes -%>
+<% if attributes.first == attribute -%>
       %h3= link_to <%= singular_table_name %>.<%= attribute.name %>, <%= singular_table_name %>
       .action
-        <%= "- if can? :edit, #{singular_table_name}\n  " if defined? CanCan %>
+        <%= "- if can? :edit, #{singular_table_name}\n  " if defined? CanCan -%>
         = link_to t('link.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
-        <%= "- if can? :destroy, #{singular_table_name}\n  " if defined? CanCan %>
+        <%= "- if can? :destroy, #{singular_table_name}\n  " if defined? CanCan -%>
         = link_to t('link.destroy'), <%= singular_table_name %>, :confirm => t('link.destroy_confirm'), :method => :delete
-
-    <% else %>
+<% else -%>
       .<%= attribute.name %>
         %strong  <%= attribute.human_name %>
         = <%= singular_table_name %>.<%= attribute.name %>
-    <% end -%>
-  <% end -%>
+<% end -%>
+<% end -%>
 <% else %>
 %table
   %tr
@@ -35,11 +34,11 @@
       %td
         = link_to <%= singular_table_name %>.<%= attribute.name %>, <%= singular_table_name %>
         .action
-          <%= "- if can? :edit, #{singular_table_name}\n  " if defined? CanCan %>
+          <%= "- if can? :edit, #{singular_table_name}\n  " if defined? CanCan -%>
           = link_to t('link.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
-          <%= "- if can? :destroy, #{singular_table_name}\n  " if defined? CanCan %>
+          <%= "- if can? :destroy, #{singular_table_name}\n  " if defined? CanCan -%>
           = link_to t('link.destroy'), <%= singular_table_name %>, :confirm => t('link.destroy_confirm'), :method => :delete
-<% else %>
+<% else -%>
       %td= <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 <% end -%>
