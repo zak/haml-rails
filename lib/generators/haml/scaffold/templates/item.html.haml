@@ -1,0 +1,17 @@
+-# if defined? <%= singular_table_name %>._counter
+<% for attribute in attributes -%>
+<% if attributes.first == attribute -%>
+  %h3= <%= singular_table_name %>.<%= attribute.name %>
+  .action
+<%= "    - if can? :edit, #{singular_table_name}\n  " if defined? CanCan -%>
+    = link_to t('link.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
+<%= "    - if can? :destroy, #{singular_table_name}\n  " if defined? CanCan -%>
+    = link_to t('link.destroy'), <%= singular_table_name %>, :confirm => t('link.destroy_confirm'), :method => :delete
+<% else -%>
+  .attribute.name
+    %strong <%= attribute.human_name %>:
+    = <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+<% end -%>
+
+= link_to 'Back', <%= index_helper %>_path
