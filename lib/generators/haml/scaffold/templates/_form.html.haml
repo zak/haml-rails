@@ -11,7 +11,7 @@
     %li.field
       = f.label :<%= attribute.name %>
 <% if attribute.reference? -%>
-      = f.select :<%= attribute.name %>, <%= orm_class.all(attribute.reference) %>.map{|c| [c.name, c.id] }
+      = f.select :<%= attribute.name %>, <%= orm_class.all(attribute.reference) %>.map{|c| [c.name, c.id] }, :prompt => t('prompt', <%= attribute.human_name %>)
 <% else -%>
       = f.<%= attribute.field_type %> :<%= attribute.name %>
 <% end -%>

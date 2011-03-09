@@ -29,6 +29,8 @@ module Haml
           filename = filename_with_extensions(view)
           template "#{view}.html.haml", File.join("app/views", controller_file_path, filename)
         end
+        filename = filename_with_extensions("_" + singular_table_name)
+        template "item.html.haml", File.join("app/views", controller_file_path, filename)
       end
 
       hook_for :form_builder, :as => :scaffold

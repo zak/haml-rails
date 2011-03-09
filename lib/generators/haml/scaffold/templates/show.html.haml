@@ -1,11 +1,11 @@
-%p#notice= notice
+#<%= singular_table_name %>
+  -#= render @<%= singular_table_name %>
+  <% for attribute in attributes -%>
+  .<%= attribute.name %>
+    %strong <%= attribute.human_name %>:
+    = @<%= singular_table_name %>.<%= attribute.name %>
+  <% end -%>
 
-<% for attribute in attributes -%>
-%p
-  %b <%= attribute.human_name %>:
-  = @<%= singular_table_name %>.<%= attribute.name %>
-<% end -%>
-
-= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
-\|
-= link_to 'Back', <%= index_helper %>_path
+  = link_to t('link.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
+  \|
+  = link_to t('link.back'), <%= index_helper %>_path

@@ -16,7 +16,7 @@
         = link_to t('link.destroy'), <%= singular_table_name %>, :confirm => t('link.destroy_confirm'), :method => :delete
 <% else -%>
       .<%= attribute.name %>
-        %strong  <%= attribute.human_name %>
+        %strong <%= attribute.human_name %>
         = <%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 <% end -%>
